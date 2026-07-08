@@ -1,0 +1,15 @@
+# Raw, unsanitized captures never enter the repo
+data/raw/
+
+# Secrets
+.env
+*.key
+secrets*
+
+# OS noise
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
