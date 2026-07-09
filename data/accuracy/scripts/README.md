@@ -14,10 +14,11 @@ is computed against a known reference.
 ## Session procedure
 
 1. Pick a script (A–D) and a condition (see matrix below).
-2. **Start a reference recording** on a second device (phone voice recorder,
-   ≥44.1 kHz) placed at similar distance to the Fieldy device. This is the
-   control: the same audio transcribed locally with whisper.cpp large-v3 gives
-   an on-prem ASR baseline to compare Fieldy's cloud pipeline against.
+2. **Start a reference recording** on a second device placed at similar
+   distance to the Fieldy device. This is the control: the same audio
+   transcribed locally with whisper.cpp large-v3 gives an on-prem ASR
+   baseline to compare Fieldy's cloud pipeline against. See "Reference rig"
+   below for hardware options.
 3. Speak the session slate first: "R Q three, session `<script letter>`
    `<condition>` `<take number>`" — this appears in both transcripts and
    aligns Fieldy events with reference recordings.
@@ -37,6 +38,42 @@ is computed against a known reference.
 
 Minimum 2 takes per script × condition cell that applies (scripts A–C: quiet,
 tv, out; script D: quiet, tv).
+
+## Reference rig
+
+Requirement for scored takes: matched placement (reference mic clipped
+adjacent to the Fieldy device on the chest) so both instruments hear the
+same signal. An iPhone's built-in mic is acceptable for `quiet` takes;
+`tv`/`out` takes and placement parity want a wireless lav.
+
+Hardware landscape, verified 2026-07-09 — the qualifying spec is
+**standalone onboard recording on the transmitter**, so ground truth doesn't
+depend on a radio link:
+
+| System | Onboard TX recording | Notes |
+|---|---|---|
+| DJI Mic 3 | ✔ 32-bit float, 32 GB, dual-file (original + enhanced), timecode | Preferred: score the *original* track (reviews criticize the enhanced processing); timecode replaces the spoken slate for alignment |
+| DJI Mic 2 | ✔ 32-bit float, 8 GB, ~11 h | Fully adequate |
+| DJI Mic Mini 2S | ✔ 32-bit float, 14.5 GB | Launched China 2026-07-02; availability TBD |
+| DJI Mic Mini | ✘ (no internal storage) | Disqualified as reference recorder |
+| Rode Wireless Micro | ✘ (records via receiver/phone only) | Disqualified as standalone; fine as phone input |
+| Rode Wireless GO II | ✔ 24-bit/48 kHz, ~7 h uncompressed | Adequate; fixed 24-bit, shorter runtime |
+
+Caveat **[verified, DJI Mic 2 FAQ]**: DJI transmitters disable internal
+recording while Bluetooth-connected to a phone — run standalone (or via the
+receiver) for scored takes.
+
+A transmitter with onboard recording also enables a possible third study arm:
+a fully local pipeline (TX records all day → whisper.cpp batch transcription
+on-prem, audio never leaves the network) compared against Fieldy's cloud on
+identical days. Not scheduled; recorded here as a design option.
+
+## Open question (moved to Day 1 checklist)
+
+Does the Fieldy **phone app** record from the phone's microphone / active
+audio input (vs. only syncing from the wearable)? If yes, iPhone + lav
+becomes a way to feed higher-quality audio through Fieldy's cloud pipeline —
+separating microphone hardware from cloud-pipeline quality on Fieldy itself.
 
 ## Scoring
 

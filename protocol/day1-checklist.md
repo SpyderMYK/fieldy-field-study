@@ -16,6 +16,7 @@ Work top to bottom; log everything (including surprises and failures) in `lab-no
 - [ ] Install app, create account — **record which email used** (matters for MCP OAuth later; Apple Private Relay users must use the relay email)
 - [ ] Screenshot every permission the app requests
 - [ ] Walk every settings screen; screenshot; note any consent/notification features (RQ5)
+- [ ] **Does the phone app record from the phone's microphone** (vs. only syncing from the wearable)? If yes: does it use a connected external mic (USB-C/Bluetooth lav) as input? (Enables the mic-quality vs. cloud-pipeline separation experiment — see `data/accuracy/scripts/README.md`)
 
 ## 3. Developer surface bring-up
 
