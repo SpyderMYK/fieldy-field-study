@@ -21,6 +21,40 @@ the concept migrates into glasses/earbuds. Fieldy remaining independent and
 opening a developer surface is a differentiator worth noting in study
 conclusions.
 
+## Omi in depth (checked against repo + docs, 2026-07-09)
+
+[BasedHardware/omi](https://github.com/BasedHardware/omi): $89 BLE pendant,
+MIT-licensed with the full stack published — nRF/Zephyr firmware, Flutter
+mobile app, Python/FastAPI backend, macOS desktop app, ESP32-S3 glasses
+variant. Active project (~13k stars, 2,100+ forks, v0.12.61 released July
+2026). Developer surface is broader than Fieldy's: REST API, Python/Swift/
+React Native SDKs, a plugin/app framework, and MCP server support. Repo
+claims 24+ h continuous capture — **[inferred/marketing]**, unmeasured, and
+this category's hardware claims have already burned us once (see Fieldy RQ4).
+
+**Self-hosting caveat [verified against the backend setup docs]:** a
+"self-hosted" Omi backend still *requires* external accounts and keys for
+OpenAI, **Deepgram (STT — audio still leaves the network)**, Firebase (auth),
+Pinecone, Redis/Upstash, Google Cloud Storage, Pusher, and Hugging Face. The
+docs do not cover local substitutes. Out of the box, self-hosting Omi means
+running the orchestration layer locally while audio takes essentially the
+same cloud path as Fieldy's (Deepgram vs. ElevenLabs; OpenAI either way).
+Marketing describes the LLM side as "model-agnostic via OpenAI-compatible
+APIs" — pointing it at a local model server may be feasible
+**[inferred, unverified]** — but the STT path is Deepgram-coupled; replacing
+it with local Whisper would be real engineering, not configuration.
+
+**Study relevance:** Omi's honest advantage is *inspectability*, not privacy.
+Fieldy can only be characterized from outside (RQ1–RQ6 exist precisely
+because of that); Omi's pipeline is readable code, so a future side-by-side
+could separate microphone/hardware quality from cloud-pipeline quality —
+impossible in any black-box comparison. Decision as of 2026-07-09: no second
+device until Fieldy baselines exist; revisit if Fieldy accuracy or webhook
+reliability disappoints.
+
+Additional sources: [Omi backend setup docs](https://docs.omi.me/doc/developer/backend/Backend_Setup),
+[Omi docs introduction](https://docs.omi.me/doc/get_started/introduction).
+
 ## Methods that fit this study's environment
 
 The homelab already runs Apple Silicon hosts with local LLM tooling, which
