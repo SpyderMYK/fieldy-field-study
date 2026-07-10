@@ -1,6 +1,6 @@
 # Study protocol
 
-**Status:** v1.1, 2026-07-10. The protocol is versioned; changes are logged at the bottom, never silently rewritten.
+**Status:** v1.2, 2026-07-10. The protocol is versioned; changes are logged at the bottom, never silently rewritten.
 
 **Subject device:** Fieldy AI wearable (model/firmware to be recorded on arrival — hardware claims from reviews failed pre-study fact-checking, so nothing is assumed).
 
@@ -43,7 +43,7 @@ The claim set "7-day battery, USB-C, charging case, splash-proof, privacy light,
 
 **Method:** exhaustive walk of device hardware indicators and every app settings screen; check help center for consent guidance. Documented as found/not-found per feature.
 
-**Added in v1.1 — voiceprints as biometrics:** Fieldy's speaker-profiles feature is speaker identification; determine whether vendor docs/privacy policy describe it as voiceprint/biometric collection, and whether any consent, notice, retention, or destruction terms attach to *non-wearer* voices. Context: Illinois BIPA treats voiceprints as biometric identifiers requiring written consent and a destruction policy; Colorado's biometric-consent rules apply to this study's location **[to verify against primary legal sources]**. See `background/ai-notetaker-privacy-context-2026-07.md`.
+**Added in v1.1 — voiceprints as biometrics:** Fieldy's speaker-profiles feature is speaker identification; determine whether vendor docs/privacy policy describe it as voiceprint/biometric collection, and whether any consent, notice, retention, or destruction terms attach to *non-wearer* voices. Context **[verified v1.2]**: Illinois BIPA treats voiceprints as biometric identifiers requiring written consent and a destruction policy; Colorado's [HB 24-1130](https://leg.colorado.gov/bills/hb24-1130) (effective 2025-07-01) extends similar notice/consent, retention-policy, and no-sale duties to any controller processing Colorado residents' biometric identifiers, regardless of CPA volume thresholds — obligations that would fall on Fieldy as controller. Documentary test: does Fieldy publish biometric-specific notice/consent and a retention-and-deletion policy? See `background/ai-notetaker-privacy-context-2026-07.md`.
 
 **Deliverable:** section in `data/hardware-actuals.md` + notebook entry.
 
@@ -65,6 +65,20 @@ Speech → cloud transcription (ElevenLabs) → webhook POST. No published numbe
 | Ground-truth reading scripts | RQ3 | to write |
 | Official Fieldy MCP server → Claude | qualitative exploration | connect Day 1 |
 
+## Recording rules (added v1.2)
+
+Colorado is one-party consent (C.R.S. §§ 18-9-303, 18-9-304): recording a
+conversation you participate in is lawful. The statute's shield does NOT
+cover conversations the recorder is absent from, so:
+
+1. The device is powered off or physically with the researcher at all
+   times — never left recording unattended.
+2. For remote meetings with out-of-state participants, the strictest
+   participant state's consent law is treated as controlling (~11 states
+   require all-party consent).
+3. These are floors, not the standard: the study's own ethics rules
+   (announce, ask, redact) exceed the legal minimum.
+
 ## Publication rules
 
 1. Notebook entries are append-only and pushed same-day.
@@ -76,3 +90,4 @@ Speech → cloud transcription (ElevenLabs) → webhook POST. No published numbe
 
 - **v1 (2026-07-08):** initial protocol, pre-arrival.
 - **v1.1 (2026-07-10):** RQ5 expanded with voiceprint/biometric sub-question, prompted by AP's 2026-07-09 AI-notetaker privacy report (see `background/ai-notetaker-privacy-context-2026-07.md`).
+- **v1.2 (2026-07-10):** Colorado statutes verified against primary sources (HB 24-1130 biometrics; C.R.S. §§ 18-9-303/304 one-party consent). Recording rules section added: no unattended recording, strictest-state rule for remote meetings.
