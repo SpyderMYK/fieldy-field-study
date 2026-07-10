@@ -1,6 +1,6 @@
 # Study protocol
 
-**Status:** v1, 2026-07-08 (pre-arrival). The protocol is versioned; changes are logged at the bottom, never silently rewritten.
+**Status:** v1.1, 2026-07-10. The protocol is versioned; changes are logged at the bottom, never silently rewritten.
 
 **Subject device:** Fieldy AI wearable (model/firmware to be recorded on arrival — hardware claims from reviews failed pre-study fact-checking, so nothing is assumed).
 
@@ -43,6 +43,8 @@ The claim set "7-day battery, USB-C, charging case, splash-proof, privacy light,
 
 **Method:** exhaustive walk of device hardware indicators and every app settings screen; check help center for consent guidance. Documented as found/not-found per feature.
 
+**Added in v1.1 — voiceprints as biometrics:** Fieldy's speaker-profiles feature is speaker identification; determine whether vendor docs/privacy policy describe it as voiceprint/biometric collection, and whether any consent, notice, retention, or destruction terms attach to *non-wearer* voices. Context: Illinois BIPA treats voiceprints as biometric identifiers requiring written consent and a destruction policy; Colorado's biometric-consent rules apply to this study's location **[to verify against primary legal sources]**. See `background/ai-notetaker-privacy-context-2026-07.md`.
+
 **Deliverable:** section in `data/hardware-actuals.md` + notebook entry.
 
 ### RQ6 — End-to-end pipeline latency
@@ -73,3 +75,4 @@ Speech → cloud transcription (ElevenLabs) → webhook POST. No published numbe
 ## Change log
 
 - **v1 (2026-07-08):** initial protocol, pre-arrival.
+- **v1.1 (2026-07-10):** RQ5 expanded with voiceprint/biometric sub-question, prompted by AP's 2026-07-09 AI-notetaker privacy report (see `background/ai-notetaker-privacy-context-2026-07.md`).
