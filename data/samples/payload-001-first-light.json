@@ -1,0 +1,21 @@
+{
+  "received_at": "2026-07-11T03:08:11.354803+00:00",
+  "authorized": true,
+  "remote_addr": "127.0.0.1",
+  "method": "POST",
+  "path": "/",
+  "headers": {
+    "Host": "REDACTED.example:8443",
+    "User-Agent": "python-httpx/0.28.1",
+    "Content-Length": "1802",
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate",
+    "Content-Type": "application/json",
+    "Tailscale-Funnel-Request": "?1",
+    "X-Forwarded-For": "152.55.180.114",
+    "X-Forwarded-Host": "REDACTED.example:8443",
+    "X-Forwarded-Proto": "https"
+  },
+  "body_encoding": "utf-8",
+  "body": "{\"date\":\"2026-07-11T03:08:10.936107+00:00\",\"transcription\":\"RQ3, session B, quiet one.\\nOne: \\\"The birch canoe slid on the smooth planks.\\\" Two: \\\"Glue the sheet to the dark blue background.\\\" Three: \\\"It's easy to tell the depth of a well.\\\" Four: \\\"These days a chicken leg is a rare dish.\\\" Five: \\\"Rice is often served in round bowls.\\\"\\nSix: \\\"The juice of lemons makes fine punch.\\\"\\nSeven: \\\"The box was thrown beside the parked truck.\\\" Eight: \\\"The hogs were fed chopped corn and garbage.\\\"\\nNine: \\\"Four hours of steady work faced us.\\\"\\nTen: \\\"A large size in stockings is hard to sell.\\\"\",\"transcriptions\":[{\"text\":\"RQ3, session B, quiet one.\",\"speaker\":\"Speaker 1\",\"start\":3.39,\"end\":7.470000000000001,\"timestamp\":\"2026-07-11T03:08:04.386000+00:00\"},{\"text\":\"One: \\\"The birch canoe slid on the smooth planks.\\\" Two: \\\"Glue the sheet to the dark blue background.\\\" Three: \\\"It's easy to tell the depth of a well.\\\" Four: \\\"These days a chicken leg is a rare dish.\\\" Five: \\\"Rice is often served in round bowls.\\\"\",\"speaker\":\"Speaker 1\",\"start\":10.23,\"end\":36.21,\"timestamp\":\"2026-07-11T03:08:11.226000+00:00\"},{\"text\":\"Six: \\\"The juice of lemons makes fine punch.\\\"\",\"speaker\":\"Speaker 1\",\"start\":38.85,\"end\":42.09,\"timestamp\":\"2026-07-11T03:08:39.846000+00:00\"},{\"text\":\"Seven: \\\"The box was thrown beside the parked truck.\\\" Eight: \\\"The hogs were fed chopped corn and garbage.\\\"\",\"speaker\":\"Speaker 1\",\"start\":44.67,\"end\":53.97,\"timestamp\":\"2026-07-11T03:08:45.666000+00:00\"},{\"text\":\"Nine: \\\"Four hours of steady work faced us.\\\"\",\"speaker\":\"Speaker 1\",\"start\":56.73,\"end\":60.39,\"timestamp\":\"2026-07-11T03:08:57.726000+00:00\"},{\"text\":\"Ten: \\\"A large size in stockings is hard to sell.\\\"\",\"speaker\":\"Speaker 1\",\"start\":63.15,\"end\":67.47,\"timestamp\":\"2026-07-11T03:09:04.146000+00:00\"}]}"
+}
