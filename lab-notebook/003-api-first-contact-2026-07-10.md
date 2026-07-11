@@ -75,6 +75,16 @@ docs-drift table — and the positives (quiet-room WER 0, first-try webhook,
 developer-friendly validation, read-only MCP surface). Responses, if any,
 will be logged here.
 
+**Vendor reply received same evening** (fast enough to suggest an AI support
+agent; correspondence paraphrased, not republished). Substance: (a)
+recommended re-pairing through the Fieldy app as the supported recovery path
+for post-OTA BLE bond breaks — consistent with the troubleshooting article
+we followed; (b) **confirmed the API-key docs bug** — docs say `sk-fieldy-…`,
+real keys are `sk-f-…` — upgrading that finding from observed to
+vendor-acknowledged; (c) requested full payload samples and findings by
+email for deeper review of the timestamp offset and docs drift. Follow-up
+with samples and server-side identifiers sent in response.
+
 ## Next queue
 
 - MCP server → Claude connection (same account email).
