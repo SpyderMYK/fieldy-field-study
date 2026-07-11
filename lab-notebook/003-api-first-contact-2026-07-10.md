@@ -35,6 +35,19 @@ away should exaggerate the shift to hours.
 - Machine note: this session runs on **herman** (Mac mini M4);
   homelab_state's "(M1)" label for the LabDocs host is stale.
 
+## Addendum — full API surface enumerated (same night)
+
+Found the unauthenticated OpenAPI spec at `api.fieldy.ai/docs/spec.json`.
+**RQ2 answered at the documented level: fully read-write** — create/update/
+delete on conversations, tasks, speaker profiles, memory templates,
+sharables. `GET /transcriptions` is the transcript source (conversation
+`content` never populates); segments carry per-segment IDs and a
+`source:"live"` field. `GET /user/me` exposes only the account email.
+All-segments-identical `createdAt` == webhook `date` further confirms
+one-burst ingest at manual end. Details in
+[`../data/api-surface.md`](../data/api-surface.md). Practical write test
+queued (create→patch→delete on a throwaway object).
+
 ## Next queue
 
 - MCP server → Claude connection (same account email).

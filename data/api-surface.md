@@ -42,11 +42,46 @@ fields by hours.
 timestamps for time-of-utterance semantics; anchor externally (spoken
 slate + local clock, or timecode reference recorder).
 
-## Untested
+## Full surface — from the machine-readable spec (found 2026-07-10)
 
-- Other resources (tasks, speaker profiles, templates, sharable links,
-  user info) — endpoints not yet enumerated.
-- Whether any write verbs exist (RQ2 core question).
+An OpenAPI 3 spec lives unauthenticated at
+`https://api.fieldy.ai/docs/spec.json` ("Fieldy Public API", version 2.0.0).
+The JS-rendered docs page is just a viewer for it. Endpoint × verb matrix:
+
+| Resource | GET | POST | PATCH | DELETE |
+|---|---|---|---|---|
+| `/conversations`, `/conversations/{id}` | ✔ list+get | ✔ create | ✔ update | ✔ delete |
+| `/tasks`, `/tasks/{id}` | ✔ list | ✔ create | ✔ update | ✔ delete |
+| `/transcriptions` | ✔ list | — | — | — |
+| `/speaker-profiles`, `/speaker-profiles/{id}` | ✔ | ✔ | ✔ | ✔ |
+| `/memory-templates`, `/memory-templates/{id}` | ✔ | ✔ | ✔ | ✔ |
+| `/user/me` | ✔ | — | — | — |
+| `/sharables`, `/sharables/{id}` | ✔ | ✔ | — | ✔ |
+
+**RQ2 answered (documented surface): the API is fully read-write** —
+including `conversations.create`. Write verbs are spec-documented but not
+yet exercised; a controlled write test (create → patch → delete on a
+purpose-made object) is queued per protocol.
+
+### Verified reads (2026-07-10)
+
+- `GET /user/me` → `{"email": …}` only — minimal account surface.
+- `GET /transcriptions?startTime&endTime` → the segment stream. Per-segment
+  `id`, `text`, `timestamp`, `speaker`, `speakerProfileId`, `start`, `end`,
+  `createdAt`, **`source: "live"`** (implies an offline-storage source
+  value — useful for the timestamp experiment).
+- `GET /tasks?status=<enum>` — required status filter with lifecycle
+  `new|approved|completed|rejected|skipped|cancelled|expired`; empty so far.
+- `GET /speaker-profiles` — empty; profiles evidently require enrollment.
+- Conversation `content` stayed null in every view tried (`?include=content`
+  ignored); **transcript text is only in `/transcriptions` and the webhook**.
+- Segment `createdAt` was identical (03:08:10.901) across all six segments
+  of the first-light conversation, equal to the webhook `date` — the whole
+  conversation ingested server-side in one burst at manual end. Reinforces
+  the sync-anchored-timestamps theory.
+
+## Still untested
+
+- Write verbs in practice (does PATCH/DELETE actually work; error shapes).
 - Rate-limit behavior at the 30 req/min boundary.
-- Fetching a single conversation by id (presumably `/conversations/{id}`)
-  and whether `content` populates there.
+- `/transcriptions` pagination and its `source` values for offline captures.
