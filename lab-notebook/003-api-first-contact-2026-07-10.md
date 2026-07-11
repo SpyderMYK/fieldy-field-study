@@ -65,6 +65,16 @@ queued (create→patch→delete on a throwaway object).
 - **Day 1 checklist: complete** (webhook ✓ API key ✓ MCP ✓ first-light ✓
   LED ✓; permission-screen walk partially documented, to finish).
 
+## Addendum 3 — vendor contacted
+
+Per the pre-registered decision (share after first real data), the
+researcher emailed hey@fieldy.ai on 2026-07-10 (local) with the repo link
+and a summary of Day 1 findings: the silent no-op button after the
+firmware-update BLE orphan, the sync-anchored timestamp evidence, the
+docs-drift table — and the positives (quiet-room WER 0, first-try webhook,
+developer-friendly validation, read-only MCP surface). Responses, if any,
+will be logged here.
+
 ## Next queue
 
 - MCP server → Claude connection (same account email).
