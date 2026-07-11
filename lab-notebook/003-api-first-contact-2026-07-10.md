@@ -1,0 +1,45 @@
+# 003 — API first contact; timestamp theory
+
+**Date:** 2026-07-10, late evening (UTC 2026-07-11). Continues
+[002](002-first-light-2026-07-10.md).
+
+## Done
+
+- API key generated in-app and stored locally off-repo. **Observed:** real
+  key prefix is `sk-f-…`, not the documented `sk-fieldy-…` — docs drift #6.
+- First authenticated call succeeded. `GET /conversations` characterized —
+  contract, item schema, pagination, and the id-only-in-API correlation
+  problem written up in [`../data/api-surface.md`](../data/api-surface.md).
+- The first-light conversation appears in the API with AI title *"Audio
+  Testing with Phonetic Sentences"* and a summary that correctly inferred
+  equipment testing/calibration from content alone.
+
+## Key finding — Fieldy's speech timestamps are sync-anchored, not capture-anchored [working theory]
+
+With our clocks NTP-audited, the evidence across webhook + API for one
+conversation is only consistent if speech-time metadata is stamped when
+audio syncs from pendant to phone, not when spoken (~64–91 s late here).
+Server-side fields are honest; speech-time fields are not. Full analysis in
+the data docs. Implication for any downstream automation (and for assistive
+use): never trust Fieldy's timestamps for when something was said.
+Confirmation experiment queued: offline-storage recording with the phone
+away should exaggerate the shift to hours.
+
+## Also observed
+
+- Silence-only sessions create "No speech detected" conversation records
+  (two today) but fired no webhooks.
+- Ongoing capture shows as a record with provisional endTime = start + 3 h;
+  the pendant was confirmed still listening after our test ended — ambient
+  capture really is continuous once transcribing is started.
+- Machine note: this session runs on **herman** (Mac mini M4);
+  homelab_state's "(M1)" label for the LabDocs host is stale.
+
+## Next queue
+
+- MCP server → Claude connection (same account email).
+- Enumerate remaining API resources; probe for write verbs (RQ2 core).
+- `/conversations/{id}` — does `content` populate?
+- LED-during-transcription observation.
+- Noisy/TV condition takes (scripts A & C next, then D).
+- Offline-storage timestamp experiment.

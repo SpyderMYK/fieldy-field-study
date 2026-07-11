@@ -43,18 +43,28 @@ researcher-scripted speech). n=1 so far — everything here is provisional.
   background report describes the wearer as "distinctly marked." Two-speaker
   takes (script D) will show what labels non-wearers get.
 
-## Timestamp anomaly (first capture, must-replicate)
+## Timestamp anomaly (first capture — resolved to a working theory)
 
 Payload received at alien 03:08:11.35 UTC; Fieldy's own `date` field agrees
-(03:08:10.94 — clock agreement within 0.4 s). But the segment `timestamp`
-fields run to 03:09:04 — **~53 s after the payload was received**. Speech
-that arrives before it happens means the segment `timestamp` fields are
-synthesized (anchor + offset arithmetic against some later-shifted anchor),
-not measured wall-clock. Working rule: **treat `start`/`end` offsets as
-meaningful, segment `timestamp` fields as unreliable** until characterized.
-Consequence for RQ6: latency measurement needs an external log of true
-speech time (spoken slate at a noted clock second, or a timecode reference
-recorder).
+(03:08:10.94). But the segment `timestamp` fields run to 03:09:04 — **~53 s
+after the payload was received** — and the API record for the same
+conversation claims endTime 03:09:36 with `updatedAt` 03:08:13 (a record
+"last updated" 83 s before it ended).
+
+Receiver-side clocks were audited against NTP (alien 0.0004 s off,
+chrony stratum 3; herman 0.034 s off) — the inconsistency is Fieldy's.
+
+**Working theory [inferred]:** server-side fields (webhook `date`, API
+`updatedAt`) are true wall-clock; speech-time fields (segment `timestamp`s,
+conversation `startTime`/`endTime`) are anchored to pendant→phone **sync**
+time and sit late by the BLE sync lag (~64–91 s here). See
+[`api-surface.md`](api-surface.md) for the cross-check and the
+offline-storage test that would confirm it.
+
+Working rule: **treat `start`/`end` offsets as meaningful, absolute
+speech timestamps as unreliable.** RQ6 latency measurement requires an
+externally logged speech time (slate at a noted clock second, or a
+timecode reference recorder).
 
 ## Delivery semantics
 
