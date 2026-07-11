@@ -80,8 +80,23 @@ purpose-made object) is queued per protocol.
   conversation ingested server-side in one burst at manual end. Reinforces
   the sync-anchored-timestamps theory.
 
+### Write cycle exercised (2026-07-10, throwaway task)
+
+`POST /tasks` → `PATCH /tasks/{id}` → `DELETE /tasks/{id}`: all worked
+first try; deletion verified via list. Observations:
+
+- Task create requires only `title` + `date`; response includes `memoryId`
+  (null here) — the task↔conversation linkage field.
+- **API-created tasks are born `status:"approved"`** — presumably
+  speech-extracted tasks start `new`, giving automations a way to tell
+  Fieldy-extracted tasks from API-injected ones. To confirm when script D
+  generates real extractions.
+- PATCH accepts partial bodies (`required: []`); status transitions and
+  completionDate applied without ceremony.
+
 ## Still untested
 
-- Write verbs in practice (does PATCH/DELETE actually work; error shapes).
 - Rate-limit behavior at the 30 req/min boundary.
 - `/transcriptions` pagination and its `source` values for offline captures.
+- Write verbs on conversations/speaker-profiles/templates (task cycle
+  proven; others presumed similar, verify before relying).
