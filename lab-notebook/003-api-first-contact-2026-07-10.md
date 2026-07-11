@@ -48,6 +48,23 @@ one-burst ingest at manual end. Details in
 [`../data/api-surface.md`](../data/api-surface.md). Practical write test
 queued (create→patch→delete on a throwaway object).
 
+## Addendum 2 — MCP connected; LED confirmed; Day 1 checklist complete
+
+- Official MCP server connected to Claude via desktop-app custom connector
+  (browser OAuth, account email). Surface: **4 read-only tools** — narrower
+  than the REST API by design. Verified round-trip against the first-light
+  conversation. Details: [`../data/mcp-surface.md`](../data/mcp-surface.md).
+- **LED during active transcription: steady white [verified by direct
+  observation]** — matches the LED help article. RQ5 synthesis firming up:
+  a recording indicator exists but is an unlabeled white dot, meaningful
+  only to someone who has read the vendor's help article; combined with the
+  on-box "user's responsibility" disclaimer, Fieldy provides no
+  bystander-legible consent affordances.
+- The ambient session from tonight closed at exactly its provisional 3-hour
+  window with "No speech detected" — continuous ambient capture confirmed.
+- **Day 1 checklist: complete** (webhook ✓ API key ✓ MCP ✓ first-light ✓
+  LED ✓; permission-screen walk partially documented, to finish).
+
 ## Next queue
 
 - MCP server → Claude connection (same account email).
