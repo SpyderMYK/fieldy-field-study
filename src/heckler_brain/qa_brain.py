@@ -25,8 +25,10 @@ PROMPT = (
     "The following is a question or topic spoken aloud by someone. Answer it "
     "for a small 2-line LED sign. Respond with STRICT JSON: "
     '{{"line1": str, "line2": str}} - a correct, concise answer split across '
-    "two lines, each at most 42 characters, ALL CAPS, no emoji. If it is not "
-    "a question, give the single most useful fact about the topic. "
+    "two lines, each at most 42 characters, in normal sentence case (not all "
+    "caps) but KEEP acronyms and abbreviations capitalized (AI, USA, NASA, "
+    "GPU, mph), no emoji. If it is not a question, give the single most useful "
+    "fact about the topic. "
     "Spoken input:\n---\n{q}\n---\nJSON only."
 )
 
