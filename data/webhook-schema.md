@@ -56,11 +56,18 @@ chrony stratum 3; herman 0.034 s off) — the inconsistency is Fieldy's.
 
 **Theory v1 (sync-anchoring) was REFUTED by the offline-storage experiment**
 (notebook 007): a 14-minute sync delay did not shift claimed speech times.
-**Theory v2 [inferred]:** speech-time metadata carries a roughly constant
-~1–2 minute lateness (late-stamped conversation anchor OR inflated audio
-offsets — discriminating test queued). Error appears bounded at ~2 min
-regardless of sync delay. Server-side fields (webhook `date`, `createdAt`,
-`updatedAt`) remain honest wall-clock.
+**Theory v2 — CONFIRMED by time-hack measurement (notebook 009):** the
+conversation-start anchor is stamped **~60–110 s after true start** (94 s
+measured directly); segment offsets are honest; every absolute speech time
+inherits the anchor's lateness. Error is bounded (~2 min) regardless of
+sync delay. Server-side fields (webhook `date`, `createdAt`, `updatedAt`)
+remain honest wall-clock.
+
+**Also verified (notebook 009): transcripts reach Fieldy's cloud only at
+conversation end** — 12-second API polling across an open conversation
+showed zero segments until manual end, then a single burst. There is no
+server-side mid-conversation transcript access; the conversation is the
+minimum latency unit for any webhook/API integration.
 
 Working rule: **treat `start`/`end` offsets as meaningful, absolute
 speech timestamps as unreliable.** RQ6 latency measurement requires an
