@@ -71,8 +71,15 @@ timecode reference recorder).
 - First light: conversation ended manually in-app; payload observed in the
   archive within seconds-to-a-minute of the manual end (exact latency
   pending the anomaly above).
-- Retry behavior on receiver downtime: untested (planned: RQ1 take-down
-  test).
+- **Retry behavior: none — fire-and-forget [verified 2026-07-12, n=1].**
+  Take-down test: receiver stopped (funnel returning 502), a ~60 s
+  conversation spoken and ended at 00:38 UTC; transcription completed
+  normally in the cloud (API record present). Receiver restored 00:43;
+  45-minute watch: **no redelivery**. The event was permanently absent from
+  the webhook stream.
+- **Consequence:** the webhook is a low-latency hint, not a reliable
+  stream. Consumers that must not miss conversations need periodic
+  reconciliation against `GET /conversations` / `GET /transcriptions`.
 
 ## RQ3 first datapoint (quiet room, scripted)
 
