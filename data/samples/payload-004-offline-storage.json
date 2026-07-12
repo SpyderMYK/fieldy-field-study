@@ -1,0 +1,21 @@
+{
+  "received_at": "2026-07-12T03:41:24.733176+00:00",
+  "authorized": true,
+  "remote_addr": "127.0.0.1",
+  "method": "POST",
+  "path": "/",
+  "headers": {
+    "Host": "REDACTED.example:8443",
+    "User-Agent": "python-httpx/0.28.1",
+    "Content-Length": "296",
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate",
+    "Content-Type": "application/json",
+    "Tailscale-Funnel-Request": "?1",
+    "X-Forwarded-For": "152.55.180.114",
+    "X-Forwarded-Host": "REDACTED.example:8443",
+    "X-Forwarded-Proto": "https"
+  },
+  "body_encoding": "utf-8",
+  "body": "{\"date\":\"2026-07-12T03:41:24.292882+00:00\",\"transcription\":\"This is the away test at exactly 9:27 and 25 seconds.\",\"transcriptions\":[{\"text\":\"This is the away test at exactly 9:27 and 25 seconds.\",\"speaker\":\"Unknown\",\"start\":1258.41,\"end\":1264.41,\"timestamp\":\"2026-07-12T03:29:16.820000+00:00\"}]}"
+}

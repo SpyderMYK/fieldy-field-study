@@ -54,12 +54,13 @@ conversation claims endTime 03:09:36 with `updatedAt` 03:08:13 (a record
 Receiver-side clocks were audited against NTP (alien 0.0004 s off,
 chrony stratum 3; herman 0.034 s off) — the inconsistency is Fieldy's.
 
-**Working theory [inferred]:** server-side fields (webhook `date`, API
-`updatedAt`) are true wall-clock; speech-time fields (segment `timestamp`s,
-conversation `startTime`/`endTime`) are anchored to pendant→phone **sync**
-time and sit late by the BLE sync lag (~64–91 s here). See
-[`api-surface.md`](api-surface.md) for the cross-check and the
-offline-storage test that would confirm it.
+**Theory v1 (sync-anchoring) was REFUTED by the offline-storage experiment**
+(notebook 007): a 14-minute sync delay did not shift claimed speech times.
+**Theory v2 [inferred]:** speech-time metadata carries a roughly constant
+~1–2 minute lateness (late-stamped conversation anchor OR inflated audio
+offsets — discriminating test queued). Error appears bounded at ~2 min
+regardless of sync delay. Server-side fields (webhook `date`, `createdAt`,
+`updatedAt`) remain honest wall-clock.
 
 Working rule: **treat `start`/`end` offsets as meaningful, absolute
 speech timestamps as unreliable.** RQ6 latency measurement requires an
