@@ -85,6 +85,16 @@ vendor-acknowledged; (c) requested full payload samples and findings by
 email for deeper review of the timestamp offset and docs drift. Follow-up
 with samples and server-side identifiers sent in response.
 
+**Second vendor reply:** support agent states the timestamp anchoring is
+**not documented internally either** ("our docs don't currently describe how
+conversation start/end and segment timestamps are anchored") — so the
+sync-anchor theory can't be confirmed or refuted from their support-facing
+docs. Their only documented timing behavior: a conversation "may take up to
+a couple of minutes to process and finalize" after it ends (consistent with
+our observed seconds-scale webhook delivery after manual end). Offered to
+route the repo and samples to the appropriate team via a human agent —
+accepted; escalation to the developer-platform/firmware side requested.
+
 ## Next queue
 
 - MCP server → Claude connection (same account email).
