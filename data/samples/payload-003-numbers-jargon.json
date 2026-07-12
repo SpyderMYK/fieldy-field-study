@@ -1,0 +1,21 @@
+{
+  "received_at": "2026-07-12T00:30:19.925087+00:00",
+  "authorized": true,
+  "remote_addr": "127.0.0.1",
+  "method": "POST",
+  "path": "/",
+  "headers": {
+    "Host": "REDACTED.example:8443",
+    "User-Agent": "python-httpx/0.28.1",
+    "Content-Length": "1676",
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate",
+    "Content-Type": "application/json",
+    "Tailscale-Funnel-Request": "?1",
+    "X-Forwarded-For": "152.55.180.114",
+    "X-Forwarded-Host": "REDACTED.example:8443",
+    "X-Forwarded-Proto": "https"
+  },
+  "body_encoding": "utf-8",
+  "body": "{\"date\":\"2026-07-12T00:30:19.487413+00:00\",\"transcription\":\"RQ3, session C, quiet one.\\nThe meeting is on Tuesday, March 3, at 9:45 in the morning.\\nOur budget rose from $12,500 to $19,080, an increase of about 52%. The server rack holds an OpenSense firewall, a ZFS storage pool named Tank, and a Proxmox hypervisor on VLAN 20. Dr. Nguyen and Mrs. Okuoko received the DOCSIS 3.1 modem, an ARIS SurfBoard S330\u2014oops, that should be 33\u2014before switching the Tailscale exit node. The IP address is 192.168.20.111, and the fallback port is 8443.\\nEmail the CSV to procurement by Friday, the 21st, and CC Rajesh, Siobhan, and Xavier on the follow-up.\",\"transcriptions\":[{\"text\":\"RQ3, session C, quiet one.\",\"speaker\":\"Speaker 1\",\"start\":1.05,\"end\":5.67,\"timestamp\":\"2026-07-12T00:30:28.059000+00:00\"},{\"text\":\"The meeting is on Tuesday, March 3, at 9:45 in the morning.\",\"speaker\":\"Speaker 1\",\"start\":7.71,\"end\":12.57,\"timestamp\":\"2026-07-12T00:30:34.719000+00:00\"},{\"text\":\"Our budget rose from $12,500 to $19,080, an increase of about 52%. The server rack holds an OpenSense firewall, a ZFS storage pool named Tank, and a Proxmox hypervisor on VLAN 20. Dr. Nguyen and Mrs. Okuoko received the DOCSIS 3.1 modem, an ARIS SurfBoard S330\u2014oops, that should be 33\u2014before switching the Tailscale exit node. The IP address is 192.168.20.111, and the fallback port is 8443.\",\"speaker\":\"Speaker 1\",\"start\":13.59,\"end\":61.47,\"timestamp\":\"2026-07-12T00:30:40.599000+00:00\"},{\"text\":\"Email the CSV to procurement by Friday, the 21st, and CC Rajesh, Siobhan, and Xavier on the follow-up.\",\"speaker\":\"Speaker 1\",\"start\":62.49,\"end\":71.97,\"timestamp\":\"2026-07-12T00:31:29.499000+00:00\"}]}"
+}
