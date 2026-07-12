@@ -50,3 +50,12 @@ Tonight: TV condition (004), numbers/jargon (005), retry test + app bugs
 (006), offline timestamps (007). Remaining queue: script D two-speaker
 take, anchor-discrimination time-hack take, battery rundown (running),
 "Yesterday" title-flip check at 18:00 local, permission-screen walk.
+
+## Addendum — vendor escalation confirmed (2026-07-12)
+
+Named support agent (Justin) confirmed the full package — timestamp
+analysis, payload notes, repo links — was passed to the team handling the
+developer platform and device firmware; they will reach out after review.
+Correspondence continues to be paraphrased, not republished. (Incidental:
+Fieldy's email footer reads "Previously Compass" — prior company name,
+noted for background.)
