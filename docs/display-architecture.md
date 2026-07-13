@@ -62,3 +62,21 @@ screen does the full-color gag.
    UNO Q polling the bus (richest, closest to the original comedy vision).
 4. E-paper node last: verify the exact bare-panel + driver-board pairing
    before ordering; then a static-page renderer for `full`.
+
+### E-paper — open compatibility question (parked, still wanted)
+
+Researcher wants the e-paper node; blocked on a verified driver+panel
+pair. Finding (2026-07-13): the Adafruit RP2040 Feather ThinkInk (#5727,
+all-in-one RP2040 + 24-pin FPC socket) is **only tested up to 5.6"** per
+Adafruit docs — 7.5" 800x480 UC8179 support is unconfirmed. The board's
+"optional" add-ons (STEMMA QT cables, stacking headers) are irrelevant to
+this use. Before ordering, resolve ONE of:
+- a panel size the ThinkInk definitely drives (<=5.6"), OR
+- confirm #5727 drives the 7.5" UC8179 (Adafruit support / library), OR
+- a different controller for the full 7.5" (Waveshare 7.5" + its driver
+  HAT on a Pi, or drive it from the UNO Q Linux side).
+
+### Power parts ordered 2026-07-13 (Adafruit #2697 + #368)
+
+For running the built LED node off the Anker PowerCore 20100 — see
+`src/heckler_panel/README.md` for the wiring.
