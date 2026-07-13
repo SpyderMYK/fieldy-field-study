@@ -26,10 +26,12 @@ live-connected in the pocket.
    coherent, minor "do to ourselves" artifact.
 3. **"Preamble, inside the shirt, fairly windy"** (light breeze, walk):
    full and clean; reader: "I think I got the whole thing right that time."
-4. **"Preamble, scooter, under the shirt"** (riding): jumbled —
-   "…do not forget to provide for the blessings of liberty…" — reads as the
-   reader's recitation scrambling while riding, not mic failure; words
-   still intelligible.
+4. **"Preamble, scooter, under the shirt"** (riding): jumbled. **Corrected
+   attribution (researcher firsthand):** the pendant was bouncing and the
+   shirt rippling heavily during the ride — so this degradation is real
+   mechanical + wind noise, NOT just recitation error as first written.
+   This is the one take where the acoustic conditions visibly beat the
+   pipeline.
 5. **"Preamble, on scooter, inside helmet"** (riding): **full, clean,
    complete** Preamble.
 6. **"Preamble, inside helmet, low speed, on scooter"** (riding): **full,
@@ -50,6 +52,28 @@ live-connected in the pocket.
   rustle tradeoff didn't clearly favor either at these speeds.
 - Ergonomics note (researcher): forehead mount inside helmet is effective
   but uncomfortable; a better in-helmet mount would be needed for real use.
+
+## Caveat — clean transcript =/= clean audio (don't overstate wind-robustness)
+
+The coherent output does NOT prove the mic captured clean sound. Fieldy's
+ASR (ElevenLabs) uses a strong language-model prior and predicts likely
+words — and **the Preamble is maximally predictable text**, so it can be
+reconstructed from badly degraded audio by the prior alone. Combined with
+the researcher's own account (wind was mild — "slightly windy," "a light
+breeze"), the honest claim is **"coherent output in mild wind on highly
+predictable text,"** NOT "wind-proof."
+
+Supporting evidence that the audio *was* being stressed: take 4
+(scooter, under shirt) degraded audibly, and the researcher confirms the
+pendant was bouncing and the shirt rippling — real mechanical/wind noise
+the prior could not fully rescue. So the pipeline's limit *was* reached;
+predictable text just hid it elsewhere.
+
+**Prior-proof retest (queued):** read UNPREDICTABLE content in real wind —
+Script C (numbers, IPs, proper nouns like "Okonkwo", "192.168.20.111")
+that a language model cannot guess from context. If those survive wind,
+that's genuine robustness. Pair with the DJI reference recorder for
+ground-truth audio. Deferred until it is cooler than 97 F outside.
 
 ## Limitation — no clean WER this round
 
