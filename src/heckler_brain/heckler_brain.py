@@ -24,6 +24,7 @@ ALIEN = "mike@alien.lan"
 ORACLE = "oracle"
 ARCHIVE_GLOB = "/tank/fieldy/raw/webhooks-*.jsonl"
 FEED_FILE = "/opt/signage/heckler.txt"
+BUS_FILE = "/opt/signage/heckler.json"
 SHOW_FLAG = os.path.expanduser("~/.heckler_show_on")
 MODEL = "qwen2.5:14b-instruct"
 POLL = 5
@@ -69,10 +70,16 @@ def roast(transcript):
     return obj.get("line1", ""), obj.get("line2", "")
 
 
-def push(line1, line2):
-    body = f"{line1}\n{line2}\n"
+def publish(mode, line1, line2):
+    """Write the plain-text projection (LED node) and the JSON bus."""
+    short = (line1 + " " + line2).strip()
+    bus = json.dumps({"ts": time.time(), "mode": mode, "line1": line1,
+                      "line2": line2, "short": short, "full": short})
     sh(["ssh", "-o", "BatchMode=yes", ALIEN,
-        f"sudo tee {FEED_FILE} >/dev/null"], input=body, timeout=30)
+        f"sudo tee {FEED_FILE} >/dev/null"], input=f"{line1}\n{line2}\n",
+       timeout=30)
+    sh(["ssh", "-o", "BatchMode=yes", ALIEN,
+        f"sudo tee {BUS_FILE} >/dev/null"], input=bus, timeout=30)
 
 
 def main():
@@ -86,7 +93,7 @@ def main():
                 try:
                     l1, l2 = roast(transcript)
                     print(f"ROAST: {l1} / {l2}")
-                    push(l1, l2)
+                    publish("roast", l1, l2)
                 except Exception as e:
                     print("roast failed:", repr(e))
         time.sleep(POLL)
