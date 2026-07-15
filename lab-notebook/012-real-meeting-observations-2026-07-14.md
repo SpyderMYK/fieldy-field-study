@@ -1,6 +1,6 @@
 # 012 — Observations from a real ~53-min multi-party meeting
 
-**Date:** 2026-07-13. Fieldy used to capture a real multi-party video
+**Date:** 2026-07-14. Fieldy used to capture a real multi-party video
 meeting (Zoom, one in-room wearer + remote participants). **No meeting
 content, names, or specifics appear here or anywhere in this repo** — the
 transcript and derived minutes are private. Only device/pipeline behavior
@@ -27,20 +27,25 @@ Shape (non-identifying): ~53 min, ~7,000 words, ~8 human participants.
    the two channels are complementary, and audio alone is insufficient for
    attributed minutes. (n: 6 speaker labels emitted for ~8 people.)
 
-3. **Largest timestamp error observed to date: ~1+ day.** The meeting was
-   stamped ~24-plus hours ahead of real time (a same-evening meeting
-   appeared dated two calendar days later in UTC). This dwarfs the ~90-s
-   anchor-late offset characterized in notebook 009 and suggests a separate,
-   coarser failure (device/app clock or offline-sync date assignment), not
-   just the fine anchor lag.
+3. **~~Largest timestamp error observed to date: ~1+ day.~~ RETRACTED —
+   this was an analyst error, not a Fieldy bug.** Original claim: the
+   meeting appeared stamped a day ahead. **Correction:** the researcher
+   confirmed the meeting was on the evening of the 14th (local), which in
+   UTC is the early hours of the 15th — exactly what Fieldy recorded.
+   Fieldy's timestamp was **correct.** The assistant had assumed the wrong
+   meeting date and pattern-matched to the known anchor-late bug
+   (confirmation bias). Fieldy's only *verified* timestamp issue remains the
+   ~90-s anchor-late start offset (notebook 009). Lesson: don't attribute to
+   a device bug what a wrong assumption explains.
 
-4. **The timestamp error breaks time-window queries.** Because the record's
-   startTime was mis-stamped, `GET /conversations?startTime&endTime` over
-   the real meeting window returned nothing — the meeting fell outside the
-   queried range. The MCP `list_recent_conversations` tool (no time filter)
-   surfaced it immediately. **Practical rule:** do not rely on time-range
-   queries to find a conversation; Fieldy's own timestamps can place it
-   outside any sane window. List-recent / cursor paging is more reliable.
+4. **UTC/local date-boundary gotcha (querier-side, not a device bug).** An
+   evening-local meeting lands on the *next* UTC calendar day, so a
+   `GET /conversations?startTime&endTime` window built around the local date
+   can miss it by hours. That is what happened here — the REST query used
+   the wrong day, and the MCP `list_recent_conversations` tool (no time
+   filter) surfaced it immediately. **Practical rule:** to find a recent
+   conversation, prefer list-recent over a hand-built time window, and if
+   using a window, remember Fieldy timestamps are UTC.
 
 5. **Transcript paging quirk.** `GET /transcriptions` capped at 50 segments
    with a null `nextCursor` despite more segments existing; full retrieval
