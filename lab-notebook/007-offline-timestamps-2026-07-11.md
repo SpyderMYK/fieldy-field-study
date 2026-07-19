@@ -59,3 +59,13 @@ developer platform and device firmware; they will reach out after review.
 Correspondence continues to be paraphrased, not republished. (Incidental:
 Fieldy's email footer reads "Previously Compass" — prior company name,
 noted for background.)
+
+## Addendum — Fieldy team reached out; call being scheduled (2026-07-18)
+
+The escalation landed with a real result: a member of the Fieldy team
+(Adomas) emailed on 2026-07-15 saying he was impressed by the study and
+asking to hop on a call this week, then followed up on the 18th. Researcher
+replied to schedule. So the study went full circle — findings published →
+support triage → dev/firmware team → a direct conversation with the vendor.
+Correspondence paraphrased, not republished. Any product/technical outcomes
+from the call that are non-confidential will be logged here.
