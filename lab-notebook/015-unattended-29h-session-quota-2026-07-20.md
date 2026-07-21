@@ -139,3 +139,37 @@ with the vendor than the retracted alarm above.
 Fieldy's own reported time fields have now misled this study three times.
 **Never infer duration or usage from Fieldy's reported timestamps — always
 verify against the underlying transcript segments.**
+
+---
+
+## Ambiguity resolved — it is a reporting artifact [verified by placement]
+
+The correction above left two readings open: (a) a reporting artifact, or
+(b) the device genuinely powered and capturing for ~29 hours with only ~62
+minutes of voice. Note that (b) could not be dismissed on the "end time ==
+next session's start" signature alone, since a continuously-recording device
+split into consecutive conversations would produce exactly that.
+
+**Resolving evidence (researcher's physical setup):** the pendant lives
+permanently hanging at the researcher's desk, **inside his peripheral vision
+from his working position**, and the LED is plainly noticeable when lit. The
+29-hour span covers **many waking hours the researcher spent at that desk**
+(afternoon/evening of the 19th, morning of the 20th). No lit LED was
+observed at any point in those hours. Overnight hours were unobserved, but
+the daytime hours alone are sufficient — a continuously-lit 29-hour session
+could not have gone unnoticed.
+
+**Conclusion: (a) — the device was NOT capturing for 29 hours.** It ran for
+roughly the one-hour radio period and then stopped; Fieldy's reported
+conversation `endTime` stretched to the start of the next session ~28 hours
+later.
+
+**So the standing finding is the reporting bug, and it is user-facing:**
+Fieldy reports a conversation duration ~28x longer than the audio it
+actually contains (29 h 24 m reported vs 62 min captured), and **the app
+displays the same inflated span**, not just the API. A user reading their
+own history will badly misjudge how long the device was recording — which is
+precisely the false alarm this notebook entry itself fell into.
+
+No privacy incident occurred. The device behaved as instructed and its
+indicator worked as designed; the defect is in duration reporting.
