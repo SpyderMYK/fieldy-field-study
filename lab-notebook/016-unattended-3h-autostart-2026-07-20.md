@@ -59,12 +59,22 @@ consequences worth stating plainly:
 
 ## Finding 2b — untranscribed recordings emit **no webhook** [verified]
 
-The study's webhook receiver has run continuously since 2026-07-15 and is
-confirmed active. On the day of the event it fired twice — 20:11:19Z and
-20:13:10Z — for the *transcribed* lunch conversation (which ended 20:11:03Z).
+The study's webhook receiver has run continuously since 2026-07-15 (Tailscale
+Funnel confirmed up, no outage in the logs). On the day of the event it fired
+exactly twice, and **the two events are not what they first appeared to be**:
 
-**It received nothing for the 3-hour recording**, and nothing at all after
-20:13Z.
+| Received | Segments | Which conversation |
+|---|---|---|
+| 20:11:19.858Z | 354 | the lunch (171+180+3 = 354, notebook 014) |
+| 20:13:10.163Z | **38** | **the jazz** (38 segments, notebook 015) |
+
+*(An earlier revision of this entry asserted both events were the lunch. That
+was wrong — corrected on the researcher's challenge, "what about the webhook
+for the 29-hour session?" See Finding 2c, which that question uncovered.)*
+
+**No webhook was received for the 3-hour recording**, and none after 20:13Z.
+The conclusion stands on the 3-hour recording alone: **it was never
+transcribed, and it produced no webhook.**
 
 So the webhook fires on *transcription* completion, not on *recording*
 completion. Practical consequence for anyone building on this: **while a user
@@ -72,6 +82,41 @@ is over quota, the webhook path cannot see their activity at all.** Capture
 continues (Finding 2), but the integration surface goes silent — the one
 combination where an external monitor would be most useful is the one that
 does not report. Detecting these requires polling the conversations endpoint.
+
+## Finding 2c — the 29-hour session is now **fully** explained: a 29-hour offline hold [verified]
+
+Chasing the jazz webhook produced the mechanism that notebook 015 was missing.
+
+All **38** jazz segments carry a **single identical** `createdAt` —
+`2026-07-20T20:13:09Z` — matching the webhook received at 20:13:10.163Z. The
+audio itself was spoken 2026-07-19 14:22–15:24Z.
+
+**Burst `createdAt` equal to sync time is the offline-storage signature this
+study characterised in [notebook 007](007-offline-timestamps-2026-07-11.md).**
+
+So the sequence was:
+
+1. **07-19 ~14:20Z** — a session begins; ~62 min of broadcast radio is captured.
+2. The pendant is **not synced to the phone**; the audio sits in offline storage
+   and the conversation record stays **open**.
+3. **~29 hours pass** with the audio unsynced and the record unclosed.
+4. **07-20 19:44:03Z** — the lunch session begins. Fieldy closes the stale open
+   record *at that boundary*, which is why its `endTime` is exactly the next
+   session's `startTime` — the signature 015 spotted but could not explain.
+5. **07-20 20:13:09Z** — everything flushes: 38 segments ingested in one burst,
+   webhook delivered one second later.
+
+**The device was not recording for 29 hours.** Three independent lines now
+agree: only 62 minutes of audio exist (015), a 3-hour cap makes 29 hours
+impossible (Finding 1), and the ingest burst shows a 29-hour *hold*, not a
+29-hour capture (here).
+
+**The real defect is therefore sharper than "inflated durations":** an
+unsynced session stays open indefinitely, and its reported duration silently
+becomes *time-until-next-sync* rather than time recorded. Any user whose
+pendant goes unsynced overnight will see a fictitious multi-hour conversation
+in their history. That is a concrete, reproducible bug with a clear fix (close
+a session at the end of its captured audio, not at the next session's start).
 
 ## Finding 3 — hypotheses tested and eliminated
 

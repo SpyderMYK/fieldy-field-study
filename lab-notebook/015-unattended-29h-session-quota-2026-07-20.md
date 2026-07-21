@@ -173,3 +173,21 @@ precisely the false alarm this notebook entry itself fell into.
 
 No privacy incident occurred. The device behaved as instructed and its
 indicator worked as designed; the defect is in duration reporting.
+
+---
+
+## Mechanism found — see [016](016-unattended-3h-autostart-2026-07-20.md), Finding 2c
+
+The conclusion above is confirmed, and the *cause* is now known. All 38
+segments share one `createdAt` (2026-07-20T20:13:09Z) — the burst-ingest
+signature of **offline storage** ([007](007-offline-timestamps-2026-07-11.md)).
+
+The pendant captured ~62 min of radio on 07-19 **while unsynced**, held it in
+offline storage for ~29 hours with the conversation record left **open**, and
+flushed it on 07-20. Fieldy closed the stale record at the next session's
+start — which is exactly the `endTime == next startTime` signature noted above,
+now explained rather than merely observed.
+
+So the reported duration was **time-until-next-sync**, not time recorded. The
+bug is more specific and more reproducible than "inflated durations": leave a
+pendant unsynced overnight and a fictitious multi-hour conversation appears.
