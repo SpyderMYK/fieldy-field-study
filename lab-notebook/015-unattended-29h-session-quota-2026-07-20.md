@@ -78,7 +78,64 @@ himself did not know it was recording, bystanders certainly did not.**
 - A clearer persistent "still recording" signal (push notification after
   prolonged capture, not just an LED).
 
-## Researcher's position
+---
 
-The researcher considers this serious enough to reconsider continued use of
-the device. Logged here as a study finding regardless of that decision.
+# CORRECTION (same day) — the 29-hour figure was WRONG
+
+The researcher challenged the premise: he was in the room the whole period
+and would have noticed the recording LED. That prompted checking the
+underlying transcript segments instead of the reported duration. **He was
+right and the analysis above was wrong.**
+
+**Measured:** the "29-hour" conversation contains only **38 transcript
+segments spanning 62.4 minutes** (2026-07-19 14:22:24 → 15:24:48, 349
+words). There are **no segments at all** for the remaining ~28 hours.
+
+**So:** the device captured **~1 hour** of radio audio, not 29 hours. The
+conversation's reported `endTime` (2026-07-20T19:44:03) is **exactly the
+`startTime` of the next session** (the lunch conversation) to the second —
+i.e. Fieldy stretched the record to fill the gap until the next session
+began.
+
+### What is retracted
+
+- ~~1,764 transcription minutes consumed by one session~~ — **false**.
+  Actual captured audio ≈ **62 minutes**.
+- ~~A single session exceeded even the paid Plus tier's monthly allowance~~
+  — **false**.
+- ~~29 hours of household ambient audio uploaded unnoticed~~ — **false**;
+  roughly one hour was.
+- The alarming framing of "a day and a half of recording you didn't know
+  about" is withdrawn. The device was very likely on, with its LED lit, for
+  about an hour.
+
+### What still stands
+
+1. **Broadcast audio is transcribed and does bill against the quota.**
+   ~62 minutes of a radio station were transcribed and summarized as a
+   "conversation" — ~41% of the 150-min free tier from one hour of music.
+   The vendor's *"background noise or chatter will not count"* wording still
+   does not protect against broadcast **voice**. Same root cause as the TV
+   finding (notebook 004).
+2. **No usage/quota endpoint in the public API** (re-verified) — users and
+   integrations cannot monitor remaining minutes.
+3. **Quota exhaustion is explained by cumulative study usage**, not one
+   runaway session: the radio hour (~62 m) plus the meeting (~53 m), lunch
+   (~27 m), field walk (~24 m) and assorted tests comfortably exceeds the
+   150-minute free tier.
+
+### NEW finding surfaced by the correction
+
+**Fieldy reports grossly inflated conversation durations.** A conversation
+holding 62 minutes of audio is reported as spanning **29 h 24 m** — ~28x
+the real content — because the end time runs to the start of the next
+session rather than the end of captured audio. Any user reading the app (or
+the API) would badly misjudge both their recording history and their usage.
+This is a reporting/data-model bug, and a more defensible thing to raise
+with the vendor than the retracted alarm above.
+
+### Method lesson (third time)
+
+Fieldy's own reported time fields have now misled this study three times.
+**Never infer duration or usage from Fieldy's reported timestamps — always
+verify against the underlying transcript segments.**
