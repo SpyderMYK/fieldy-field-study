@@ -57,6 +57,22 @@ consequences worth stating plainly:
    without paying.** That is a defensible product decision, but it deserves to
    be explicit rather than discovered.
 
+## Finding 2b — untranscribed recordings emit **no webhook** [verified]
+
+The study's webhook receiver has run continuously since 2026-07-15 and is
+confirmed active. On the day of the event it fired twice — 20:11:19Z and
+20:13:10Z — for the *transcribed* lunch conversation (which ended 20:11:03Z).
+
+**It received nothing for the 3-hour recording**, and nothing at all after
+20:13Z.
+
+So the webhook fires on *transcription* completion, not on *recording*
+completion. Practical consequence for anyone building on this: **while a user
+is over quota, the webhook path cannot see their activity at all.** Capture
+continues (Finding 2), but the integration surface goes silent — the one
+combination where an external monitor would be most useful is the one that
+does not report. Detecting these requires polling the conversations endpoint.
+
 ## Finding 3 — hypotheses tested and eliminated
 
 Every plausible trigger was tested. All failed.
